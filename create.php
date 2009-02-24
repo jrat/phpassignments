@@ -12,7 +12,7 @@
   }
 
   // Create database
-  if (mysql_query("CREATE DATABASE my_db",$con))
+  if (mysql_query("CREATE DATABASE p3_db",$con))
   {
     echo "Database created";
   }
@@ -21,18 +21,27 @@
     echo "Error creating database: " . mysql_error();
   }
 
-  // Create table of people and their favorite cars
-  mysql_select_db("my_db", $con);//select the db we want to add to first
-  $sql = "CREATE TABLE Persons
+  // Create table of woody allen flicks
+  mysql_select_db("p3_db", $con);
+  $sql = "CREATE TABLE Woody_Flicks
   (
-    personID int NOT NULL AUTO_INCREMENT, 
-    PRIMARY KEY(personID),
-    Name varchar(25),
-    Fav_Car varchar(25)
+    flickID int NOT NULL AUTO_INCREMENT, 
+    PRIMARY KEY(flickID),
+    Title varchar(25),
+    Release_Date int
   )";
-
   // Execute query
   mysql_query($sql,$con);
+
+  $sql = "CREATE TABLE Accolades
+  (
+    accolID int NOT NULL AUTO_INCREMENT, 
+    PRIMARY KEY(accolID),
+    Name varchar(25)
+  )";
+  // Execute query
+  mysql_query($sql,$con);
+  
 
   //Close the connection
   mysql_close($con);
